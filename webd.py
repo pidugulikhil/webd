@@ -1,5 +1,5 @@
 """
-AI Automator v10 - CYBREIGN
+WEBD v10 - Dev by likhil
 ============================
 Acts as a real streaming LLM API (OpenAI-compatible format).
 Compatible with OpenClaw and any OpenAI SDK client.
@@ -16,10 +16,10 @@ Install:
   playwright install
 
 First time:
-  python ai_automator.py --setup
+  python webd.py --setup
 
 Run:
-  python ai_automator.py
+  python webd.py
 
 OpenClaw config:
   Base URL : http://localhost:8080/v1
