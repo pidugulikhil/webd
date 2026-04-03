@@ -149,6 +149,7 @@ def get_active_session(provider: str) -> dict | None:
     return matches[0] if matches else None
 
 
+
 def get_latest_reusable_session(provider: str) -> dict | None:
     """
     Return the latest non-full, non-closed session for a provider.
