@@ -1,14 +1,5 @@
-﻿<div align="center">
-  <pre><code><span style="color:#ff0000;">
-██          ██  ████████  ███████    ███████
- ██    ██    ██  ██        █      █   █      █
- ██   /  \   ██  ██████    ███████    █      █
- ██ ██    ██ ██  ██        █      █   █      █
-█████    █████  ████████  ███████    ███████</span></code></pre>
-</div>
-
 <p align="center">
-    <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=0:00B894,50:0984E3,100:E17055&text=WEBD&fontColor=ffffff&fontAlign=50&fontAlignY=35&desc=Local%20AI%20Gateway&descAlign=50&descAlignY=58&animation=fadeIn" alt="WEBD Waving Header" />
+    <img src="https://capsule-render.vercel.app/api?type=blur&height=350&color=gradient&text=WEBD&section=header&reversal=true&textBg=false&fontColor=000099&fontSize=80&animation=twinkling&stroke=000000&strokeWidth=1&desc=LLM's%20API%20GATEWAY" alt="WEBD Waving Header" />
 </p>
 
 <p align="center">
