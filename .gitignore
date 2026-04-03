@@ -1,3 +1,5 @@
 venv/
 venv
 erors
+__pycache__/
+webd_bak.py

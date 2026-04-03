@@ -3,3 +3,4 @@ playwright
 playwright-stealth
 pystray
 pillow
+waitress
