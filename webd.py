@@ -149,6 +149,42 @@ def get_active_session(provider: str) -> dict | None:
     return matches[0] if matches else None
 
 
+def get_latest_reusable_session(provider: str) -> dict | None:
+    """
+    Return the latest non-full, non-closed session for a provider.
+    This recovers from cases where active_<provider>_index was cleared unexpectedly.
+    """
+    data = load_sessions()
+    candidates = [
+        s for s in data.get("sessions", [])
+        if s.get("provider") == provider
+        and s.get("status", "active") == "active"
+        and int(s.get("msg_count", 0)) < MAX_MSG_PER_CHAT
+    ]
+    if not candidates:
+        return None
+    return max(candidates, key=lambda s: int(s.get("index", -1)))
+
+
+def ensure_active_session_index(provider: str) -> dict | None:
+    """
+    Ensure active_<provider>_index points to a reusable session when possible.
+    """
+    current = get_active_session(provider)
+    if current and current.get("status", "active") == "active" and int(current.get("msg_count", 0)) < MAX_MSG_PER_CHAT:
+        return current
+
+    recovered = get_latest_reusable_session(provider)
+    if not recovered:
+        return None
+
+    data = load_sessions()
+    data[f"active_{provider}_index"] = recovered["index"]
+    save_sessions(data)
+    print(f"[+] Recovered active {provider} session #{recovered['index']}")
+    return recovered
+
+
 def mark_session_full(provider: str):
     data = load_sessions()
     idx  = data.get(f"active_{provider}_index")
@@ -379,17 +415,54 @@ def ensure_healthy_page(page, provider: str):
     """
     page = ensure_alive_page(page)
 
-    if is_page_healthy(page, provider):
-        return page  # all good
-
-    print(f"[!] Page unhealthy for {provider} — invalidating session and re-navigating")
-    invalidate_session(provider)
-
     if provider == "claude":
-        navigate(page, "https://claude.ai/new", 'div[contenteditable="true"]')
+        target_url = "https://claude.ai/new"
+        expected_host = "claude.ai"
+        ready_selector = 'div[contenteditable="true"]'
     else:
-        navigate(page, "https://chatgpt.com/", "div#prompt-textarea")
-    return page
+        target_url = "https://chatgpt.com/"
+        expected_host = "chatgpt.com"
+        ready_selector = "div#prompt-textarea"
+
+    # Healthy page -> keep current session untouched.
+    if is_page_healthy(page, provider):
+        return page
+
+    current_url = ""
+    try:
+        current_url = page.url or ""
+    except Exception:
+        current_url = ""
+
+    # Only invalidate when tab is truly dead/blank. Do not invalidate on provider switches.
+    if current_url in ("about:blank", "", "chrome://newtab/"):
+        print(f"[!] Dead tab for {provider} — invalidating session and opening fresh page")
+        invalidate_session(provider)
+        navigate(page, target_url, ready_selector)
+        return page
+
+    # If currently on another provider site, just navigate to the expected one.
+    if expected_host not in current_url:
+        print(f"[*] Switching provider view to {provider} without resetting session")
+        navigate(page, target_url, ready_selector)
+        return page
+
+    # Same provider site but input not ready yet: allow slower loads before resetting session.
+    try:
+        page.wait_for_selector(ready_selector, state="visible", timeout=8_000)
+        return page
+    except Exception:
+        print(f"[!] {provider} input not ready, trying one refresh before reset")
+
+    try:
+        page.reload(wait_until="domcontentloaded", timeout=20_000)
+        page.wait_for_selector(ready_selector, state="visible", timeout=10_000)
+        return page
+    except Exception:
+        print(f"[!] {provider} page stayed unhealthy — invalidating session and reopening")
+        invalidate_session(provider)
+        navigate(page, target_url, ready_selector)
+        return page
 
 
 # ─────────────────────────────────────────────────────
@@ -754,7 +827,7 @@ def check_claude_limit(page) -> bool:
 # ─────────────────────────────────────────────────────
 def ensure_claude(page):
     page = ensure_alive_page(page)
-    session = get_active_session("claude")
+    session = ensure_active_session_index("claude")
     if session and session["status"] == "active":
         if session.get("msg_count", 0) < MAX_MSG_PER_CHAT:
             saved_url = session["url"]
@@ -834,7 +907,7 @@ def capture_claude_url_if_new(page):
 
 def ensure_chatgpt(page):
     page = ensure_alive_page(page)
-    session = get_active_session("chatgpt")
+    session = ensure_active_session_index("chatgpt")
     if session and session["status"] == "active":
         if session.get("msg_count", 0) < MAX_MSG_PER_CHAT:
             saved_url = session["url"]
@@ -1885,8 +1958,10 @@ def ol_generate():
     stream   = data.get("stream", True)
     provider = resolve_provider(model)
 
-    # Keep /api/generate stateless by default for API-like behavior.
-    if GENERATE_STATELESS:
+    # Keep /api/generate stateful unless request explicitly asks for stateless.
+    # This prevents unwanted new chats when users switch models in clients like OpenClaw.
+    request_stateless = bool(data.get("stateless", False))
+    if GENERATE_STATELESS and request_stateless:
         invalidate_session(provider)
 
     if not prompt:
