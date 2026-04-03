@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://capsule-render.vercel.app/api?type=blur&height=350&color=gradient&text=WEBD&section=header&reversal=true&textBg=false&fontColor=000099&fontSize=80&animation=twinkling&stroke=000000&strokeWidth=1&desc=LLM's%20API%20GATEWAY" alt="WEBD Waving Header" />
+    <img src="https://capsule-render.vercel.app/api?type=blur&height=350&color=gradient&text=WEBD&section=header&reversal=true&textBg=false&fontColor=000099&fontSize=80&animation=twinkling&stroke=000000&strokeWidth=1&desc=-nl-Web%20Deamon-nl-LLM's%20API%20GATEWAY" alt="WEBD" />
 </p>
 
 <p align="center">
