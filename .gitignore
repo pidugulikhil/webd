@@ -3,3 +3,6 @@ venv
 erors
 __pycache__/
 webd_bak.py
+assets/logo.png.bak
+_rollback_test.cmd
+curl
