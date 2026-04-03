@@ -3,10 +3,6 @@
 </p>
 
 <p align="center">
-    <img src="assets/logo.png" alt="WEBD Logo" width="145" />
-</p>
-
-<p align="center">
     <img src="https://img.shields.io/badge/WEBD-v1.12-00B894?style=for-the-badge" alt="WEBD v1.12" />
     <img src="https://img.shields.io/badge/WEBD_API-0984E3?style=for-the-badge" alt="WEBD API" />
     <img src="https://img.shields.io/badge/Default_Port-50000-E17055?style=for-the-badge" alt="Default Port 50000" />
