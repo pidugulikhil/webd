@@ -3,10 +3,10 @@
 </p>
 
 <p align="center">
+    <img src="https://img.shields.io/badge/WEB_DEAMON-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="PROJECT" />
     <img src="https://img.shields.io/badge/WEBD-v12-00B894?style=for-the-badge&logo=github&logoColor=white" alt="WEBD v12" />
-    <img src="https://img.shields.io/badge/ChatGPT-Claude_Bridge-10a37f?style=for-the-badge&logo=openai&logoColor=white" alt="ChatGPT Bridge" />
-    <img src="https://img.shields.io/badge/Ollama-ChatGPT_API-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama API" />
-    <img src="https://img.shields.io/badge/OpenAI-Compatible-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI Compatible" />
+    <img src="https://img.shields.io/badge/BRIDGE-Chatgpt_Claude-10a37f?style=for-the-badge&logo=openai&logoColor=white" alt="ChatGPT and Claude Bridge" />
+    <img src="https://img.shields.io/badge/OpenAI_Ollama-Compatible_API-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI Compatible" />
 </p>
 
 <p align="center">
