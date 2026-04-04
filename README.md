@@ -3,11 +3,10 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/WEBD-v12-00B894?style=for-the-badge&logo=github&logoColor=white" alt="WEBD v12" />
-    <img src="https://img.shields.io/badge/ChatGPT-Bridge-10a37f?style=for-the-badge&logo=openai&logoColor=white" alt="ChatGPT Bridge" />
-    <img src="https://img.shields.io/badge/Claude-Bridge-7c3aed?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Bridge" />
-    <img src="https://img.shields.io/badge/Ollama-API-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama API" />
-    <img src="https://img.shields.io/badge/OpenAI-API-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI API" />
+    <img src="https://img.shields.io/badge/WEBD-v1.12-00B894?style=for-the-badge&logo=github&logoColor=white" alt="WEBD v12" />
+    <img src="https://img.shields.io/badge/ChatGPT-Claude-Bridge-10a37f?style=for-the-badge&logo=openai&logoColor=white" alt="ChatGPT Bridge" />
+    <img src="https://img.shields.io/badge/Ollama-Chatgpt-type-parms-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama API" />
+
 </p>
 
 <p align="center">
@@ -15,17 +14,17 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Platform-Windows-0078D6?style=flat-square&logo=windows&logoColor=white" />
+    <img src="https://img.shields.io/badge/Platform-Windows-Linux-0078D6?style=flat-square&logo=windows&logoColor=white" />
     <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white" />
     <img src="https://img.shields.io/badge/License-GPL_3.0-blue?style=flat-square&logo=gnu&logoColor=white" />
-    <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square&logo=github&logoColor=white" />
+    <img src="https://img.shields.io/badge/Devs-Welcome-brightgreen?style=flat-square&logo=github&logoColor=white" />
 </p>
 
 ---
 
 ## 🎯 **What is WEBD in ONE sentence?**
 
-> **WEBD lets you talk to ChatGPT and Claude through ANY app that supports Ollama or OpenAI APIs — without API keys, without monthly fees, just your browser logged in once.**
+> **WEBD lets you talk to ChatGPT and Claude through ANY app that supports Ollama or OpenAI type APIs — without API keys, without monthly fees, just your browser logged in once.**
 
 ---
 
